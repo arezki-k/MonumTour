@@ -1,0 +1,30 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tous les departements</title>
+</head>
+<div layout:fragment="content" class="container">
+    <div class="card-body">
+        <table class="table table-striped">
+            <tr>
+                <th>Numéro</th><th>Chef lieu </th><th>Nom département</th><th>Communes</th><th>Edition</th><th>Supression</th>
+            </tr>
+            <tr th:each="d:${departements}">
+                <td th:text="${d.getNumDep()}"></td>
+                <td th:text="${d.chefLieu}"></td>
+                <td th:text="${d.nomDep}"></td>
+                <td >
+                    <p th:each="lieu : ${d.getLieux()}" th:text=" ${lieu.getNomCom()} "></p>
+                </td>
+
+                <td><a class="btn btn-success" th:href="@{updateDepartement(id=${d.getNumDep()})}">Editer</a></td>
+
+                <td><a class="btn btn-danger" onclick="return confirm('Confirmez supression ?')"
+                       th:href="@{deleteDepartement(id=${d.getNumDep()})}">Supprimer</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+    </div>
+</div>

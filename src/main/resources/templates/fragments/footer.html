@@ -1,0 +1,40 @@
+<!-- Site footer -->
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-9">
+                <h6>A propos</h6>
+                <p class="text-justify">MonumTour est une application developpée avec Java et le framwork SpringBoot dans le cadre de l'UE Programmation avancée.
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h6>Liens rapides</h6>
+                <ul class="footer-links">
+                    <li><a href="#" th:href="@{/allMonuments}">Monuments</a></li>
+                    <li><a href="#" th:href="@{/allCelebrite}" >Celebrités</a></li>
+                    <li><a href="#" th:href="@{/allLieux}">Lieux</a></li>
+                    <li><a href="#" th:href="@{/allDepartements}">Departements</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                    <a href="arezki.kacioui@yahoo.fr">arezki Kacioui</a>.
+                </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <ul class="social-icons">
+                    <li><a class="dribbble" href="https://github.com/arezki-k" target="_blank"><i class="fa fa-github"></i></a></li>
+                    <li><a class="linkedin" href="https://www.linkedin.com/in/arezki-kacioui/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>

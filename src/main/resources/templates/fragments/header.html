@@ -1,0 +1,70 @@
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+    <a class="navbar-brand" href="#">MonumTour</a>
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{/}">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMonuments" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   href="#">Monuments</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMonuments">
+                    <a class="dropdown-item" href="#" th:href="@{/allMonuments}">Liste</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addMonument}">Ajout</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownCelebrite" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   href="#">Celebrités</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCelebrite">
+                    <a class="dropdown-item" th:href="@{/allCelebrite}">Liste</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addCelebrite}">Ajout</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownLieux" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   href="#">Lieux</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownLieux">
+                    <a class="dropdown-item" href="#" th:href="@{/allLieux}">Liste</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addLieu}">Ajout</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownDepartement" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                   href="#">Departements</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownDepartement">
+                    <a class="dropdown-item" href="#" th:href="@{/allDepartements}">Liste</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addDepartement}">Ajout</a>
+                </div>
+            </li>
+
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link " href="#" th:href="@{/registration}">S'inscrire</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAnonymous()">
+                <a class="nav-link " href="#" th:href="@{/login}">Se connecter</a>
+            </li>
+
+            <li class="nav-item" sec:authorize="isAuthenticated()" >
+                <a class="nav-link" href="#" th:href=" @{/logout} " >Se déconnecter</a>
+            </li>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <p class="nav-link" sec:authentication="name"></p>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+</header>

@@ -1,0 +1,69 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>lieu form</title>
+</head>
+<div layout:fragment="content" class="container">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header" th:if="${mode=='new'}"> Ajout des Lieux </div>
+            <div class="card-header" th:if="${mode=='edit'}">Modification des Lieux </div>
+            <div class="card-body">
+
+
+                <form name ="lieu" action="#" th:action="@{saveLieu}" method="post">
+
+                    <div class="form-group" th:if="${mode=='new'}">
+                        <label class="control-label">Code_Insee:</label>
+
+                        <input type="text" name="codeInsee" class="form-control"
+                               th:value="codeInsee"/>
+                    </div>
+                    <div class="form-group" style= "visibility:hidden" th:if="${mode=='edit'}">
+                        <label class="control-label">Code_Insee:</label>
+
+                        <input type="text" name="codeInsee" class="form-control"
+                               th:value="${lieu.codeInsee}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Commune :</label>
+                        <input type="text" name="nomCom" class="form-control" th:if="${mode=='new'}"
+                               th:value= "nomCom" />
+                        <input type="text" name="nomCom" class="form-control" th:if="${mode=='edit'}"
+                               th:value="${lieu.nomCom}" />
+
+                        <div class="form-group">
+                            <label class="control-label">Departement :</label>
+                            <select name="dep">
+                                <option th:each="d : ${departements}"
+                                        th:value="${d.getNumDep()}"
+                                        th:text="${d.nomDep}">Departement</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Longitude:</label>
+                            <input type="text" name="longitude" class="form-control" th:if="${mode=='new'}"
+                                   th:value="longitude" />
+                            <input type="text" name="longitude" class="form-control" th:if="${mode=='edit'}"
+                                   th:value="${lieu.longitude}"/>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label">Latitude:</label>
+                                <input type="text" name="latitude" class="form-control" th:if="${mode=='new'}"
+                                       th:value="latitude" />
+                                <input type="text" name="latitude" class="form-control" th:if="${mode=='edit'}"
+                                       th:value="${lieu.latitude}"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Valider</button>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

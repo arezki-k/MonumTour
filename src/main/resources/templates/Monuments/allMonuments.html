@@ -1,0 +1,44 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tous les monuments</title>
+</head>
+<div layout:fragment="content" class="container">
+    <div class="container">
+        <div class="card">
+            <span th:text= " ${monuments.size}"></span>
+            <div class="card-header">
+                Liste des Monuments
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>codeM</th><th>NomM </th><th>proprietaire</th><th>typeMonument</th><th>longitude</th><th>latidute</th><th>codeLieu</th>
+                    </tr>
+                    <tr th:each="m:${monuments}">
+                        <td th:text="${m.codeM}"></td>
+                        <td th:text="${m.nomM}"></td>
+                        <td th:text="${m.proprietaire}"></td>
+                        <td th:text="${m.typeMonument}"></td>
+                        <td th:text="${m.codeLieu}"></td>
+                        <td th:text="${m.longitude}"></td>
+                        <td th:text="${m.latitude}"></td>
+                        <td><a class="btn btn-success" th:href="@{modifierMonument(id=${c.codeM})}">Editer</a></td>
+                        <td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
+                               th:href="@{supprimerMonument(id=${c.codeM}, page=${currentPage},size=${size})}">Supprimer</a></td>
+
+                    </tr>
+                </table>
+                <ul class="nav nav-pills">
+                    <li th:each="page,status:${pages}">
+                        <a th:class="${status.index==currentPage?'btn btn-primary':'btn'  }"
+                           th:href="@{ ListeMonuments(page=${status.index}, size=${size} ) }"
+                           th:text="${status.index }"></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

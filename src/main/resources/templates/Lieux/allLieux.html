@@ -1,0 +1,43 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tous les lieux</title>
+</head>
+<div layout:fragment="content" class="container">
+    <div class ="container mt-3">
+        <div class="card">
+            <div class="card-header">
+                Liste des Lieux
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>codeInsee</th>
+                        <th>Departement</th>
+                        <th>Commune </th>
+                        <th>longitude</th>
+                        <th>latidute</th>
+                        <th>Edition</th>
+                        <th>Suppression</th>
+                    </tr>
+                    <tr th:each="l:${lieux}">
+                        <td th:text="${l.codeInsee}"></td>
+                        <td th:text="${l.getDep().getNomDep()}"></td>
+                        <td th:text="${l.nomCom}"></td>
+                        <td th:text="${l.longitude}"></td>
+                        <td th:text="${l.latitude}"></td>
+                        <td><a class="btn btn-success" th:href="@{editLieu(id=${l.codeInsee})}">Editer</a></td>
+
+                        <td><a class="btn btn-danger" onclick="return confirm('Confirmez la suppression ?')"
+                               th:href="@{deleteLieu(id=${l.codeInsee})}">Supprimer</a></td>
+
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
