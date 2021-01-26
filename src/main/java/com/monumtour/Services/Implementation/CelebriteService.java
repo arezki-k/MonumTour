@@ -38,6 +38,11 @@ public class CelebriteService implements ICelebriteService {
     }
 
     @Override
+    public Celebrite save(Celebrite c) {
+        return celebriteRepository.save(c);
+    }
+
+    @Override
     public void deleteCelebrite(Long numCelebrite) {
         celebriteRepository.deleteById(numCelebrite);
     }

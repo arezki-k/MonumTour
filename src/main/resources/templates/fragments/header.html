@@ -19,6 +19,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMonuments">
                     <a class="dropdown-item" href="#" th:href="@{/allMonuments}">Liste</a>
                     <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addMonument}">Ajout</a>
+                    <a class="dropdown-item" href="#" th:href="@{/distanceMonuments}">Distance entre deux monuments</a>
+
                 </div>
             </li>
             <li class="nav-item dropdown">

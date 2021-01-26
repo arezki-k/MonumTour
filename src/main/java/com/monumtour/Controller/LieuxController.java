@@ -33,6 +33,7 @@ public class LieuxController {
         modelMap.addAttribute("lieux", lieux);
         return "Lieux/allLieux";
     }
+    @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/editLieu")
     public String updatelieu(@RequestParam("id") String id,
                                     ModelMap modelMap)
@@ -45,6 +46,7 @@ public class LieuxController {
         return "Lieux/lieuForm";
     }
 
+    @Secured(value = {"ROLE_ADMIN"})
     @GetMapping("/addLieu")
     public String addlieu(ModelMap modelMap){
         List<Departement> departements = departementService.getAllDepartements();
@@ -52,6 +54,7 @@ public class LieuxController {
         modelMap.addAttribute("mode", "new");
         return "Lieux/lieuForm";
     }
+    @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/saveLieu")
     public String savelieu(@ModelAttribute("lieu") Lieu lieu, ModelMap modelMap) throws ParseException
     {
@@ -60,6 +63,7 @@ public class LieuxController {
         modelMap.addAttribute("lieux", lieux);
         return "lieux/allLieux";
     }
+    @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/deleteLieu")
     public String deleteLieu(@RequestParam("id") String id,
                                     ModelMap modelMap)

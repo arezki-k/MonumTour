@@ -1,10 +1,11 @@
-<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Toutes les celebrités</title>
 </head>
-<div layout:fragment="content" class="container">
+<div layout:fragment="content" class="container mt-3 mb-3">
     <div class="card-header">
         Liste des Celebrites
 
@@ -12,7 +13,13 @@
     <div class="card-body">
         <table class="table table-striped">
             <tr>
-                <th>numCelebrite</th><th>Nom </th><th>prenom</th><th>nationalite</th><th>epoque</th><th>Monuments associées</th><th>Edition</th><th>Suppression</th>
+                <th>numCelebrite</th>
+                <th>Nom </th><th>prenom</th>
+                <th>nationalite</th>
+                <th>epoque</th>
+                <th>Monuments associées</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Edition</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Suppression</th>
             </tr>
             <tr th:each="c:${celebrites}">
                 <td th:text="${c.numCelebrite}"></td>
@@ -21,8 +28,8 @@
                 <td th:text="${c.nationalite}"></td>
                 <td th:text="${c.epoque}"></td>
                 <td> <p th:each="m:${c.getMonuments()}" th:text="${m.getNomM()}"></p></td>
-                <td><a class="btn btn-success" th:href="@{updateCelebrite(id=${c.numCelebrite})}">Editer</a></td>
-                <td><a class="btn btn-danger" onclick="return confirm('Confirmer suppression ?')"
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success" th:href="@{updateCelebrite(id=${c.numCelebrite})}">Editer</a></td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" onclick="return confirm('Confirmer suppression ?')"
                        th:href="@{deleteCelebrite(id=${c.numCelebrite}, page=${currentPage},size=${size})}">Supprimer</a>
                 </td>
             </tr>

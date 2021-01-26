@@ -1,11 +1,12 @@
-<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>lieu form</title>
 </head>
-<div layout:fragment="content" class="container">
-    <div class="container mt-5">
+<div layout:fragment="content" class="container mt-3 mb-3">
+    <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
         <div class="card">
             <div class="card-header" th:if="${mode=='new'}"> Ajout des Lieux </div>
             <div class="card-header" th:if="${mode=='edit'}">Modification des Lieux </div>
@@ -35,7 +36,7 @@
 
                         <div class="form-group">
                             <label class="control-label">Departement :</label>
-                            <select name="dep">
+                            <select class="form-control" name="dep">
                                 <option th:each="d : ${departements}"
                                         th:value="${d.getNumDep()}"
                                         th:text="${d.nomDep}">Departement</option>

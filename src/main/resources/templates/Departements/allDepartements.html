@@ -1,14 +1,20 @@
-<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Tous les departements</title>
 </head>
-<div layout:fragment="content" class="container">
+<div layout:fragment="content" class="container mt-3 mb-3">
     <div class="card-body">
         <table class="table table-striped">
             <tr>
-                <th>Numéro</th><th>Chef lieu </th><th>Nom département</th><th>Communes</th><th>Edition</th><th>Supression</th>
+                <th>Numéro</th>
+                <th>Chef lieu </th>
+                <th>Nom département</th>
+                <th>Communes</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Edition</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Supression</th>
             </tr>
             <tr th:each="d:${departements}">
                 <td th:text="${d.getNumDep()}"></td>
@@ -18,9 +24,9 @@
                     <p th:each="lieu : ${d.getLieux()}" th:text=" ${lieu.getNomCom()} "></p>
                 </td>
 
-                <td><a class="btn btn-success" th:href="@{updateDepartement(id=${d.getNumDep()})}">Editer</a></td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success" th:href="@{updateDepartement(id=${d.getNumDep()})}">Editer</a></td>
 
-                <td><a class="btn btn-danger" onclick="return confirm('Confirmez supression ?')"
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" onclick="return confirm('Confirmez supression ?')"
                        th:href="@{deleteDepartement(id=${d.getNumDep()})}">Supprimer</a></td>
             </tr>
         </table>

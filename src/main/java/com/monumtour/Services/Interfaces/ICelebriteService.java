@@ -25,6 +25,7 @@ public interface ICelebriteService {
 
     //UPDATE
     Celebrite update(Celebrite c);
+    Celebrite save(Celebrite c);
 
     //delete
     public void deleteCelebrite(Long numCelebrite);
