@@ -45,18 +45,20 @@
                         <input type="text" name="epoque" class="form-control" th:if="${mode=='edit'}"
                                th:value="${celebrite.epoque}"/>
                     </div>
+
                     <div class="form-group">
                         <label class="control-label">Monuments :</label>
                         <select  class="form-control" name="monuments" multiple="multiple">
                             <option th:each="m : ${monuments}"
-                                    th:selected="${m.getCodeM()}"
-                                    th:value="${m.getCodeM()}"
-                                    th:text="${m.getNomM()}">Lieu</option>
+                                    th:selected="${{m}}"
+                                    th:value="${{m}}"
+                                    th:text="${m.getNomM()}">monuments
+                            </option>
                         </select>
                     </div>
-                    <div>
+
                         <button type="submit" class="btn btn-primary">Valider</button>
-                    </div>
+
                 </form>
             </div>
         </div>

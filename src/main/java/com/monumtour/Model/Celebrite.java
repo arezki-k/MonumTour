@@ -21,9 +21,9 @@ public class Celebrite implements Serializable {
     private String prenom;
     private String nationalite;
     private String epoque;
-
-
-    @ManyToMany(mappedBy = "celebrites")
+    @ManyToMany
+    @JoinTable(name="AssocieA",joinColumns= @JoinColumn(name="codeCelebrites"),
+            inverseJoinColumns=@JoinColumn(name="codeM"))
     private Collection<Monument> monuments;
 
     public Celebrite() {

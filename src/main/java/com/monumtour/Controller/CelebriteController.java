@@ -31,13 +31,9 @@ public class CelebriteController {
 
     @Secured(value = { "ROLE_ADMIN", "ROLE_USER" })
     @RequestMapping(value = "/allCelebrite")
-    public String allCelebrite(ModelMap modelMap,
-                               @RequestParam(name="page",defaultValue = "0") int page,
-                               @RequestParam (name="size", defaultValue = "100") int size){
-        Page<Celebrite> celebrites = celebriteService.getAllCelebritesParPage(page, size);
+    public String allCelebrite(ModelMap modelMap){
+        Collection<Celebrite> celebrites = celebriteService.getAllCelebrites();
         modelMap.addAttribute("celebrites", celebrites);
-        modelMap.addAttribute("pages", new int[celebrites.getTotalPages()]);
-        modelMap.addAttribute("currentPage", page);
         return "Celebrites/allCelebrites";
     }
 
@@ -53,16 +49,11 @@ public class CelebriteController {
     @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping(value = "/deleteCelebrite")
     public String deleteCelebrite(@RequestParam("id") Long id,
-                                     ModelMap modelMap,
-                                     @RequestParam (name="page",defaultValue = "0") int page,
-                                     @RequestParam (name="size", defaultValue = "100") int size)
+                                     ModelMap modelMap)
     {
         celebriteService.deleteCelebrite(id);
-        Page<Celebrite> celebrites = celebriteService.getAllCelebritesParPage(page, size);
+        Collection<Celebrite> celebrites = celebriteService.getAllCelebrites();
         modelMap.addAttribute("celebrites", celebrites);
-        modelMap.addAttribute("pages", new int[celebrites.getTotalPages()]);
-        modelMap.addAttribute("currentPage", page);
-        modelMap.addAttribute("size", size);
         return "Celebrites/allCelebrites";
     }
     @Secured(value = {"ROLE_ADMIN"})
@@ -79,8 +70,7 @@ public class CelebriteController {
     }
     @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/saveCelebrite")
-    public String saveCelebrite(@ModelAttribute Celebrite c,
-                                  ModelMap modelMap)
+    public String saveCelebrite(@ModelAttribute("celebrite") Celebrite c, ModelMap modelMap)
     {
         celebriteService.save(c);
         Collection<Celebrite> celebrites = celebriteService.getAllCelebrites();

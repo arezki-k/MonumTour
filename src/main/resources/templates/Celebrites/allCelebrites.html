@@ -23,27 +23,18 @@
                 <th sec:authorize="hasRole('ROLE_ADMIN')">Suppression</th>
             </tr>
             <tr th:each="c:${celebrites}">
-                <td th:text="${c.numCelebrite}"></td>
-                <td th:text="${c.nom}"></td>
+                <td th:text="${c.getNumCelebrite()}"></td>
+                <td th:text="${c.getNom()}"></td>
                 <td th:text="${c.prenom}"></td>
                 <td th:text="${c.nationalite}"></td>
                 <td th:text="${c.epoque}"></td>
                 <td> <p th:each="m:${c.getMonuments()}" th:text="${m.getNomM()}"></p></td>
                 <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success" th:href="@{updateCelebrite(id=${c.numCelebrite})}">Editer</a></td>
                 <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" onclick="return confirm('Confirmer suppression ?')"
-                       th:href="@{deleteCelebrite(id=${c.numCelebrite}, page=${currentPage},size=${size})}">Supprimer</a>
+                       th:href="@{deleteCelebrite(id=${c.numCelebrite})}">Supprimer</a>
                 </td>
             </tr>
         </table>
-        <!--
-        <ul class="nav nav-pills">
-            <li th:each="page,status:${pages}">
-                <a th:class="${status.index==currentPage?'btn btn-primary':'btn'  }"
-                   th:href="@{ ListeCelebrites(page=${status.index}, size=${size} ) }"
-                   th:text="${status.index}"></a>
-            </li>
-        </ul>
-        -->
     </div>
 </div>
 </div>

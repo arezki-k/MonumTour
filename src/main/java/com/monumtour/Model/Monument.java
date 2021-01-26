@@ -29,12 +29,12 @@ public class Monument implements Serializable{
     @JoinColumn(name="FK_CodeInsee")
     private Lieu localite;
     //creer une variable de type
-
     @ManyToMany //possibilte de plusieurs associations de monuments vers une celebrite
-    @JoinTable(name="AssocieA",joinColumns=
-    @JoinColumn(name="codeM"),
+    @JoinTable(name="AssocieA",joinColumns= @JoinColumn(name="codeM"),
             inverseJoinColumns=@JoinColumn(name="codeCelebrites"))
     private Collection<Celebrite> celebrites;
+
+
     public Monument() {
         super();
     }

@@ -54,8 +54,7 @@
                 <input type="text" name="longitude" class="form-control" th:if="${mode=='edit'}"
                        th:value="${monument.longitude}"/>
             </div>
-            <div>
-                <div class="form-group">
+                    <div class="form-group">
                     <label class="control-label">Latitude:</label>
                     <input type="text" name="latitude" class="form-control" th:if="${mode=='new'}"
                            th:value="latitude" />
@@ -77,13 +76,13 @@
                         <option th:each="c : ${celebrites}"
                                 th:selected="${c.getNumCelebrite()}"
                                 th:value="${c.getNumCelebrite()}"
-                                th:text="${c.getNom()}">Lieu
+                                th:text="${c.getNom()}">celebrites
                         </option>
                     </select>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Valider</button>
-            </div>
+
             </form>
             </div>
         </div>
