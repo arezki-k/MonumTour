@@ -8,16 +8,17 @@
 <div layout:fragment="content" class="container mt-3 mb-3">
     <div class="card table-responsive">
     <div class="card-header">
-        Liste des Celebrites
+        Liste des celebrités
 
     </div>
     <div class="card-body">
         <table class="table table-striped">
             <tr>
-                <th>numCelebrite</th>
-                <th>Nom </th><th>prenom</th>
-                <th>nationalite</th>
-                <th>epoque</th>
+                <th>Numéro celebrité</th>
+                <th>Nom </th>
+                <th>Prenom</th>
+                <th>Nationalite</th>
+                <th>Epoque</th>
                 <th>Monuments associées</th>
                 <th sec:authorize="hasRole('ROLE_ADMIN')">Edition</th>
                 <th sec:authorize="hasRole('ROLE_ADMIN')">Suppression</th>

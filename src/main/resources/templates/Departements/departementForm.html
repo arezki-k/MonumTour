@@ -14,7 +14,7 @@
 
 
                     <div class="form-group" style= "visibility:visible" th:if="${mode=='new'}">
-                        <label class="control-label">Dep:</label>
+                        <label class="control-label">Code departement:</label>
 
                         <input type="text" name="numDep" class="form-control"
                                th:value="numDep"/>
@@ -26,14 +26,14 @@
                                th:value="${departement.numDep}"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">NomDep :</label>
+                        <label class="control-label">Nom Departement :</label>
                         <input type="text" name="nomDep" class="form-control" th:if="${mode=='new'}"
                                th:value= "nomDep" />
                         <input type="text" name="nomDep" class="form-control" th:if="${mode=='edit'}"
                                th:value="${departement.nomDep}" />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Chef_Lieu:</label>
+                        <label class="control-label">Chef Lieu:</label>
                         <input type="text" name="chefLieu" class="form-control" th:if="${mode=='new'}"
                                th:value="chefLieu"/>
                         <input type="text" name="chefLieu" class="form-control" th:if="${mode=='edit'}"

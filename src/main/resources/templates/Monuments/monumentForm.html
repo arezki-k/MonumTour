@@ -14,7 +14,7 @@
 
 
                     <div class="form-group" style= "visibility:visible" th:if="${mode=='new'}">
-                        <label class="control-label">Code_M:</label>
+                        <label class="control-label">Code monument:</label>
 
                         <input type="text" name="codeM" class="form-control"
                                th:value="codeM"/>
@@ -26,7 +26,7 @@
                                th:value="${monument.codeM}"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">NomM :</label>
+                        <label class="control-label">Nom monument</label>
                         <input type="text" name="nomM" class="form-control" th:if="${mode=='new'}"
                                th:value= "nomM" />
                         <input type="text" name="nomM" class="form-control" th:if="${mode=='edit'}"
@@ -41,7 +41,7 @@
                        th:value="${monument.proprietaire}"/>
             </div>
             <div class="form-group">
-                <label class="control-label">TypeMonument :</label>
+                <label class="control-label">Type Monument :</label>
                 <input type="text" name="typeMonument" class="form-control" th:if="${mode=='new'}"
                        th:value="typeMonument"/>
                 <input type="text" name="typeMonument" class="form-control"  th:if="${mode=='edit'}"
