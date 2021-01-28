@@ -1,0 +1,54 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User form</title>
+</head>
+<div layout:fragment="content" class="container mt-3 mb-3">
+    <div class="container mt-5">
+        <div class="card">
+
+            <div class="card-header">Modification des users </div>
+            <div class="card-body">
+                <form name ="user" th:action="@{saveUser}" method="post">
+
+
+
+                    <div class="form-group">
+                        <label class="control-label">Nom</label>
+                        <input type="text" name="id" class="form-control" hidden
+                               th:value="${user.getId()}"/>
+                    </div>
+                        <input type="text" name="lastName" class="form-control"
+                               th:value="${user.getLastName()}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Prenom</label>
+
+                        <input type="text" name="firstName" class="form-control"
+                               th:value="${user.getFirstName()}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input type="text" name="email" class="form-control"
+                               th:value="${user.getEmail()}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Rôles :</label>
+                        <select class="form-control" name="roles" multiple="multiple">
+                            <option selected="ROLE_SUPER_ADMIN" th:value="1">Rôle administrateur</option>
+                            <option selected="ROLE_ADMIN" th:value="2">Rôle vaoyagiste</option>
+                            <option selected="ROLE_USER" th:value="3">Rôle touriste</option>
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Valider</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

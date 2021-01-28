@@ -12,4 +12,5 @@ public interface IMonumentService {
     void deleteMonumentById(String id);
     Monument getMonument(String id);
     List<Monument> getAllMonuments();
+    float distance(String codeM1, String codeM2);
 }

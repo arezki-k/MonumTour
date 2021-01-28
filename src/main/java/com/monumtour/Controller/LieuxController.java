@@ -1,5 +1,6 @@
 package com.monumtour.Controller;
 
+import com.monumtour.Exceptions.FloatErrorException;
 import com.monumtour.Model.Departement;
 import com.monumtour.Model.Lieu;
 import com.monumtour.Services.Interfaces.IDepartementService;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,12 +58,12 @@ public class LieuxController {
     }
     @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/saveLieu")
-    public String savelieu(@ModelAttribute("lieu") Lieu lieu, ModelMap modelMap) throws ParseException
-    {
+    public String savelieu(@ModelAttribute("lieu") Lieu lieu, ModelMap modelMap) {
         Lieu savelieu = lieuService.saveLieu(lieu);
         Collection<Lieu> lieux = lieuService.getAllLieux();
         modelMap.addAttribute("lieux", lieux);
         return "lieux/allLieux";
+
     }
     @Secured(value = {"ROLE_ADMIN"})
     @RequestMapping("/deleteLieu")

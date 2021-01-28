@@ -19,7 +19,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMonuments">
                     <a class="dropdown-item" href="#" th:href="@{/allMonuments}">Liste</a>
                     <a sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-item" href="#" th:href="@{/addMonument}">Ajout</a>
-                    <a class="dropdown-item" href="#" th:href="@{/distanceMonuments}">Distance entre deux monuments</a>
+                    <a class="dropdown-item" href="#" th:href="@{/distance}">Distance entre deux monuments</a>
 
                 </div>
             </li>
@@ -63,6 +63,9 @@
             </li>
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <p class="nav-link" sec:authentication="name"></p>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
+                <a class="nav-link" href="#" th:href="@{/admin}">Administration</a>
             </li>
         </ul>
 

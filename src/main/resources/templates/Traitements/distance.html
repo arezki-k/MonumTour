@@ -1,0 +1,49 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Distance</title>
+</head>
+<body>
+<div class="container mt-3 mb-3" layout:fragment="content">
+
+    <div id="distanceForm" class="mb-50 mt-50">
+        <form action="#" th:action="@{calculeDistance}" method="get">
+            <label class="control-label">Premier monument</label>
+            <select class="form-control" name="codeM1">
+                <option th:each="m:${monuments}"
+                        th:selected="${m.getCodeM()}"
+                        th:value="${m.getCodeM()}"
+                        th:text="${m.getNomM()}">
+                    Monument 1
+                </option>
+            </select>
+            <label class="control-label mt-1">Deuxième monument</label>
+            <select class="form-control" name="codeM2">
+                <option
+                        th:each="m:${monuments}"
+                        th:selected="${m.getCodeM()}"
+                        th:value="${m.getCodeM()}"
+                        th:text="${m.getNomM()}">
+                    Monument 2
+                </option>
+            </select>
+            <button type="submit" class="btn btn-primary mt-2 mb-2">Calculer</button>
+
+        </form>
+    </div>
+    <div class="alert alert-secondary text-center" role="alert" th:if="${distance}" >
+        La distance entre  <strong th:text="${monument1.getNomM()}"></strong> et
+        <strong th:text="${monument2.getNomM()}"></strong> est de <strong th:text="${distance}"></strong> KM.
+    </div>
+
+    <div id="demoMap" class="card mt-3 mb-3" style="height:400px"></div>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+        map = new OpenLayers.Map("demoMap");
+        map.addLayer(new OpenLayers.Layer.OSM());
+        map.zoomToMaxExtent();
+    </script>
+</div>
+</body>
+</html>
+</html>

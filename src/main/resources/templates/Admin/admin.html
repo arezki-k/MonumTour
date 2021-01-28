@@ -1,0 +1,46 @@
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Administration</title>
+</head>
+<div layout:fragment="content" class="container mt-3 mb-3">
+    <div class="container" sec:authorize="hasRole('ROLE_SUPER_ADMIN')">
+        <div class="card table-responsive">
+            <div class="card-header">
+                Liste des utilisateurs
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>nom</th>
+                        <th>prenom</th>
+                        <th>email</th>
+                        <th>roles</th>
+                        <th >Edition</th>
+                        <th >Supression</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="u:${users}" >
+
+                            <td th:text="${u.getLastName()}"></td>
+                            <td th:text="${u.getFirstName()}"></td>
+                            <td th:text="${u.getEmail()}"></td>
+                            <td>
+                                <p th:each="r:${u.getRoles()}" th:text="${r.getName()}"></p>
+                            </td>
+                            <td><a class="btn btn-success" th:href="@{editUser(email=${u.getEmail()})}">Editer</a></td>
+                            <td><a class="btn btn-danger" onclick="return confirm('Confirmer supression ?')"
+                                                                         th:href="@{deleteUser(email=${u.getEmail()})}">Supprimer</a></td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

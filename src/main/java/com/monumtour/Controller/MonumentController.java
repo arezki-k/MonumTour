@@ -13,11 +13,9 @@ import com.monumtour.Services.Interfaces.IMonumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.Collection;
@@ -84,6 +82,24 @@ public class MonumentController {
         return "Monuments/allmonuments";
     }
 
+    @RequestMapping("/distance")
+    public String distance(ModelMap modelMap){
+        List<Monument> monuments = monumentService.getAllMonuments();
+        modelMap.addAttribute("monuments", monuments);
+        return "Traitements/distance"; }
+
+    @RequestMapping("/calculeDistance")
+    public String calculeDistance(ModelMap modelMap, String codeM1, String codeM2 ){
+        float distance = monumentService.distance(codeM1, codeM2);
+        Monument m1 = monumentService.getMonument(codeM1);
+        Monument m2 = monumentService.getMonument(codeM2);
+        modelMap.addAttribute("monument1", m1);
+        modelMap.addAttribute("monument2", m2);
+        modelMap.addAttribute("distance", distance);
+        List<Monument> monuments = monumentService.getAllMonuments();
+        modelMap.addAttribute("monuments", monuments);
+       return "Traitements/distance";
+    }
 
 
 

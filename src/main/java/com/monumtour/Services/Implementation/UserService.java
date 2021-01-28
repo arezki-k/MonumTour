@@ -3,6 +3,7 @@ package com.monumtour.Services.Implementation;
 import com.monumtour.DTO.UserRegistrationDto;
 import com.monumtour.Model.Role;
 import com.monumtour.Model.User;
+import com.monumtour.Repository.RoleRepository;
 import com.monumtour.Repository.UserRepository;
 import com.monumtour.Services.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,14 +24,16 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
-        Role role = new Role();
-        role.setName("ROLE_USER");
+
+        Role role = roleRepository.getOne(3L);
         User user = new User();
         user.setFirstName(registrationDto.getFirstName());
         user.setLastName(registrationDto.getLastName());
@@ -37,6 +41,32 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         user.setRoles( Arrays.asList(role));
         return userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public User getUser(String email) {
+        return userRepository.findByEmail(email);
+    }
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
+
+    }
+
+    @Override
+    public void deleteUser(String mail) {
+        User user = userRepository.findByEmail(mail);
+        userRepository.delete(user);
     }
 
     @Override

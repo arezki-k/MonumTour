@@ -38,7 +38,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users_roles",  // creation d'une  3 eme table avec la relation ManytoMany
+            name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"), //fk
             inverseJoinColumns = @JoinColumn(
