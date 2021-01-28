@@ -39,12 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());  // et la l'encoding
         return auth;
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 

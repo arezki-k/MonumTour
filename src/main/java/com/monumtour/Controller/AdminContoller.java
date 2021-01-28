@@ -1,9 +1,8 @@
 package com.monumtour.Controller;
 
 
-import com.monumtour.Model.Role;
+
 import com.monumtour.Model.User;
-import com.monumtour.Services.Interfaces.IRoleService;
 import com.monumtour.Services.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;

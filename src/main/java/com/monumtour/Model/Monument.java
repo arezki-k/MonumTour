@@ -10,14 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Monument implements Serializable{
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-
     @Id
     private String codeM;
     private String nomM;
@@ -28,8 +23,7 @@ public class Monument implements Serializable{
     @ManyToOne
     @JoinColumn(name="FK_CodeInsee")
     private Lieu localite;
-    //creer une variable de type
-    @ManyToMany //possibilte de plusieurs associations de monuments vers une celebrite
+    @ManyToMany
     @JoinTable(name="AssocieA",joinColumns= @JoinColumn(name="codeM"),
             inverseJoinColumns=@JoinColumn(name="codeCelebrites"))
     private Collection<Celebrite> celebrites;
