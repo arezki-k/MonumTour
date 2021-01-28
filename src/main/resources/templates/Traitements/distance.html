@@ -36,12 +36,37 @@
         <strong th:text="${monument2.getNomM()}"></strong> est de <strong th:text="${distance}"></strong> KM.
     </div>
 
-    <div id="demoMap" class="card mt-3 mb-3" style="height:400px"></div>
+    <div id="demoMap" class="card mt-3 mb-3" style="height:500px" th:if="${map}"></div>
     <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script>
         map = new OpenLayers.Map("demoMap");
         map.addLayer(new OpenLayers.Layer.OSM());
-        map.zoomToMaxExtent();
+        //map.zoomToMaxExtent();
+        var lat1 = [[${monument1.latitude}]];
+        var lon1 = [[${monument1.longitude}]];
+
+        var lonLat = new OpenLayers.LonLat( lon1 ,lat1 )
+            .transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                map.getProjectionObject() // to Spherical Mercator Projection
+            );
+
+        var lat2 = [[${monument2.latitude}]];
+        var lon2 = [[${monument2.longitude}]];
+        var lonLat2 = new OpenLayers.LonLat( lon2 ,lat2 )
+            .transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                map.getProjectionObject() // to Spherical Mercator Projection
+            );
+
+        var zoom=7;
+
+        var markers = new OpenLayers.Layer.Markers( "Markers" );
+        map.addLayer(markers);
+        markers.addMarker(new OpenLayers.Marker(lonLat));
+        markers.addMarker(new OpenLayers.Marker(lonLat2));
+
+        map.setCenter (lonLat, zoom);
     </script>
 </div>
 </body>

@@ -98,6 +98,7 @@ public class MonumentController {
         modelMap.addAttribute("distance", distance);
         List<Monument> monuments = monumentService.getAllMonuments();
         modelMap.addAttribute("monuments", monuments);
+        modelMap.addAttribute("map", true);
        return "Traitements/distance";
     }
 
